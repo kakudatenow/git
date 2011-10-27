@@ -1,0 +1,86 @@
+git, github まとめ
+
+
+■参考
+githubについて
+http://blog.glasses-factory.net/2011/04/14/github
+http://blog.glasses-factory.net/2011/08/16/github
+
+gitについて
+http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/gittutorial.html
+http://www.hyuki.com/techinfo/gitinit.html
+
+
+
+■全体
+　gitをWindowsにインストールしてローカルに管理し、それをコマンドでgitHubにアップする。
+
+
+■git
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+イニシャライズ
+$ git init
+
+　対象ディレクトリでこのコマンドを実行すると、.git/というディレクトリが作成される。
+
+
+スナップショットの生成
+$ git add .
+
+　カレントディレクトリ配下のファイル全てのスナップショットが生成され、index という一時エリアに格納される。このことをstageされるとかいうこともあるらしい。addするとstageに乗っけられて、commitはstageを対象とするんだろうな。
+　ファイルを指定して実行することもできる。
+$ git add file1 file2 file3
+
+
+コミット
+$ git commit
+
+　gitに格納される。
+
+　 事前にaddする代わりに git commit -a としてもよい。
+
+
+コミットされる変更の確認
+$ git diff --cached
+
+　--cachedオプションを付けないと、変更されたけどまだaddされていない変更を表示する。
+
+
+ステータスの表示
+$ git status
+
+
+変更の履歴を見る
+$ git log
+$ git log -p	完全な差分の表示
+$ git log --stat --summary	ログメッセージも表示
+
+
+ブランチ関係
+　ブランチもできるんだけど．．．　まぁ、使わんな。
+
+
+古いバージョンを得る
+
+
+一つ前のバージョンに戻す
+$ git reset HEAD^
+
+　これで、直前のcommitを取り消す。HEAD^は直前のコミット。HEAD^^は２つ前のコミット。
+
+
+gitHubにアップ
+$ git remote add origin git@github.com:ユーザ名/リポジトリ名.git
+$ git push -u origin master
+
+
+
+■Git Gui
+
+　変更を選択して、コミット。そしてプッシュでGitHubへアップ。
+
+
+
+
+_______________________________________________________________________________
+・なぜ一旦Stageに格納するのか？（=なぜ直ぐにコミットしないのか？）
